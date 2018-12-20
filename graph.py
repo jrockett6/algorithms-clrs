@@ -5,8 +5,8 @@ class Graph(Digraph):
 		Digraph.__init__(self, size)
 
 	def add_edge(self, vertex, vertex2):
-		#Add first direction edge
 		try:
+			#Add first direction edge
 			node_iterator = self.vertices[vertex]
 
 			while node_iterator.next != None:

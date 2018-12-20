@@ -12,15 +12,25 @@ class Digraph:
 		for x in range(size):
 			self.vertices.append(Node(x))
 
-	def add_edge(self, vertex, vertex2):
-		node_iterator = self.vertices[vertex]
+	def add_edge(self, vertex1, vertex2):
+		try:
+			if vertex1 >= len(self.vertices) or vertex2 >= len(self.vertices):
+				raise IndexError
 
-		while node_iterator.next != None:
-			if node_iterator.next.value == vertex2:
-				return
-			node_iterator = node_iterator.next
+			node_iterator = self.vertices[vertex1]
 
-		node_iterator.next = Node(vertex2)
+			while node_iterator.next != None:
+				if node_iterator.next.value == vertex2:
+					return
+				node_iterator = node_iterator.next
+
+			node_iterator.next = Node(vertex2)
+
+		except IndexError:
+			if vertex1 >= len(self.vertices):
+				print('Cannot add edge (' + str(vertex1) + ', ' + str(vertex2) + '), vertex ' + str(vertex1) + ' does not exist in graph')
+			if vertex2 >= len(self.vertices):
+				print('Cannot add edge (' + str(vertex1) + ', ' + str(vertex2) + '), vertex ' + str(vertex2) + ' does not exist in graph')
 
 	def add_vertex(self):
 		self.vertices.append(Node(len(self.vertices)))
