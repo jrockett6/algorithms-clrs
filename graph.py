@@ -1,41 +1,33 @@
-import numpy as np
+from digraph import Digraph, Node
 
-class Node:
-	def __init__(self, data):
-		self.value = data
-		self.next = None
+class Graph(Digraph):
+	def __init__(self,size):
+		Digraph.__init__(self, size)
 
-class Graph:
-	def __init__(self, size):
-		self.vertices = np.array([], dtype = object)
+	def add_edge(self, vertex, vertex2):
+		#Add first direction edge
+		try:
+			node_iterator = self.vertices[vertex]
 
-		for x in range(size):
-			np.append(self.vertices, Node(x))
-			print('hi')
+			while node_iterator.next != None:
+				if node_iterator.next.value == vertex2:
+					return
+				node_iterator = node_iterator.next
 
-		print(self.vertices.size)
+			node_iterator.next = Node(vertex2)
 
-	def add_edge(self, vertex):
-		node_iterator = self.vertices[vertex]
+			#Add second direction edge
+			node_iterator = self.vertices[vertex2]
 
-		while node_iterator.next != None:
-			if node_iterator.next.value == vertex:
-				return
-			node_iterator = node_iterator.next
+			while node_iterator.next != None:
+				if node_iterator.next.value == vertex:
+					return
+				node_iterator = node_iterator.next
 
-		node_iterator.next = Node(vertex)
+			node_iterator.next = Node(vertex)
 
-	def add_vertex(self):
-		np.append(self.vertices, Node(counter))
-
-	def __str__(self):
-		mystr = ''
-		print(self.vertices.size)
-
-		for x in range(self.vertices.size):
-			mystr += str(x)
-			print(x)
-
-		print(mystr)
-
-		return mystr
+		except IndexError:
+			if vertex >= len(self.vertices):
+				print('Cannot add edge (' + str(vertex) + ', ' + str(vertex2) + '), vertex ' + str(vertex) + ' does not exist in graph')
+			if vertex2 >= len(self.vertices):
+				print('Cannot add edge (' + str(vertex) + ', ' + str(vertex2) + '), vertex ' + str(vertex2) + ' does not exist in graph')
