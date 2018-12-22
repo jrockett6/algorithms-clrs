@@ -2,21 +2,31 @@ from graph import Graph
 from digraph import Digraph
 from digraph_matrix import DigraphMatrix
 from graph_matrix import GraphMatrix
+from queue import Queue 
 
 
-my_digraphMat = DigraphMatrix(4)
-my_digraphMat.add_vertex()
-my_digraphMat.add_edge(2, 3)
-my_digraphMat.add_edge(2, 5)
+# my_digraphMat = DigraphMatrix(4)
+# my_digraphMat.add_vertex()
+# my_digraphMat.add_edge(2, 3)
+# my_digraphMat.add_edge(2, 5)
 
-print(my_digraphMat)
+# print(my_digraphMat)
 
 
-my_graphMat = GraphMatrix(4)
-my_graphMat.add_vertex()
-my_graphMat.add_edge(2, 1)
+# my_graphMat = GraphMatrix(4)
+# my_graphMat.add_vertex()
+# my_graphMat.add_edge(2, 1)
 
-print(my_graphMat)
+# print(my_graphMat)
+
+my_queue = Queue()
+my_queue.enqueue(4)
+my_queue.enqueue(5)
+my_queue.enqueue(2)
+my_queue.dequeue()
+my_queue.enqueue(3)
+
+print(my_queue)
 
 # my_graph = Graph(3)
 
