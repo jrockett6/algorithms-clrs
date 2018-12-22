@@ -5,6 +5,8 @@ class Node:
 		self.value = data
 		self.next = None
 		self.color = 'white'
+		self.distance = -1
+		self.prevBFS = None
 
 class Digraph:
 	def __init__(self, size):
