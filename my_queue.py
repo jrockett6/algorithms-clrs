@@ -7,6 +7,7 @@ class Queue:
 	def __init__(self):
 		self.head = None
 		self.end = None
+		self.length = 0
 
 	def enqueue(self, data):
 		new_node = QueueNode(data)
@@ -17,11 +18,13 @@ class Queue:
 			self.head = new_node
 
 		self.end = new_node
+		self.length += 1
 
 	def dequeue(self):
 		if not self.is_empty():
 			temp_node = self.head
 			self.head = temp_node.tail
+			self.length -= 1
 			return temp_node.data
 		else:
 			print('Cannot dequeue an empty queue')

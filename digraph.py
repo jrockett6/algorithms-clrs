@@ -2,7 +2,7 @@ import numpy as np
 
 class Node:
 	def __init__(self, data):
-		self.value = data
+		self.data = data
 		self.next = None
 		self.color = 'white'
 		self.distance = -1
@@ -23,7 +23,7 @@ class Digraph:
 			node_iterator = self.vertices[vertex1]
 
 			while node_iterator.next != None:
-				if node_iterator.next.value == vertex2:
+				if node_iterator.next.data == vertex2:
 					return
 				node_iterator = node_iterator.next
 
@@ -46,7 +46,7 @@ class Digraph:
 			node_iterator = self.vertices[x]
 
 			while node_iterator.next != None:
-				mystr += ' ' + str(node_iterator.next.value)
+				mystr += ' ' + str(node_iterator.next.data)
 				node_iterator = node_iterator.next
 
 			mystr +='\n'
