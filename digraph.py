@@ -1,54 +1,57 @@
 import numpy as np
 
 class Node:
-	def __init__(self, data):
-		self.data = data
+	def __init__(self, name):
+		self.name = name
 		self.next = None
 		self.color = 'white'
 		self.distance = -1
-		self.prevBFS = None
+		self.finish_time = -1
+		self.prev_search = None
 
 class Digraph:
-	def __init__(self, size):
-		self.vertices = []
-
-		for x in range(size):
-			self.vertices.append(Node(x))
+	def __init__(self):
+		self.vertex_object = {}
+		self.vertices = {}
 
 	def add_edge(self, vertex1, vertex2):
 		try:
-			if vertex1 >= len(self.vertices) or vertex2 >= len(self.vertices):
+			if not vertex1 in self.vertices or not vertex2 in self.vertices:
 				raise IndexError
 
-			node_iterator = self.vertices[vertex1]
-
-			while node_iterator.next != None:
-				if node_iterator.next.data == vertex2:
+			for edges in self.vertices[vertex1]:
+				if edges == vertex2:
+					print('Edge already exists in graph')
 					return
-				node_iterator = node_iterator.next
 
-			node_iterator.next = Node(vertex2)
+			self.vertices[vertex1].append(vertex2)
 
 		except IndexError:
-			if vertex1 >= len(self.vertices):
-				print('Cannot add edge (' + str(vertex1) + ', ' + str(vertex2) + '), vertex ' + str(vertex1) + ' does not exist in graph')
-			if vertex2 >= len(self.vertices):
-				print('Cannot add edge (' + str(vertex1) + ', ' + str(vertex2) + '), vertex ' + str(vertex2) + ' does not exist in graph')
+			if vertex1 not in self.vertices:
+				print('Cannot add edge (' + str(vertex1) + ', ' + str(vertex2) + '), vertex "' + str(vertex1) + '" does not exist in graph')
+			if vertex2 not in self.vertices:
+				print('Cannot add edge (' + str(vertex1) + ', ' + str(vertex2) + '), vertex "' + str(vertex2) + '" does not exist in graph')
 
-	def add_vertex(self):
-		self.vertices.append(Node(len(self.vertices)))
+	def add_vertex(self, vertex):
+		self.vertices[vertex] = []
+		self.vertex_object[vertex] = Node(vertex)
 
 	def __str__(self):
 		mystr = ''
 
-		for x in range(len(self.vertices)):
-			mystr += str(x) 
-			node_iterator = self.vertices[x]
+		for vertex in self.vertices:
+			if type(vertex) != str:
+				mystr += str(vertex) + ': '
+			else:
+				mystr += vertex + ': '
 
-			while node_iterator.next != None:
-				mystr += ' ' + str(node_iterator.next.data)
-				node_iterator = node_iterator.next
+			for edge in self.vertices[vertex]:
+				if type(edge) != str:
+					mystr += str(edge) + ', '
+				else:
+					mystr += edge + ', '
 
-			mystr +='\n'
+			mystr = mystr[:-2]
+			mystr += '\n'
 
 		return mystr
