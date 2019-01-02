@@ -4,6 +4,7 @@ from digraph_matrix import DigraphMatrix
 from graph_matrix import GraphMatrix
 from queue import Queue 
 from breadth_first_search import breadth_first_search
+from depth_first_search import depth_first_search
 
 
 # my_digraphMat = DigraphMatrix(4)
@@ -29,20 +30,24 @@ from breadth_first_search import breadth_first_search
 
 # print(my_queue)
 
-my_graph = Digraph(7)
+my_graph = Graph()
 
-my_graph.add_edge(1, 2)
-my_graph.add_edge(2, 5)
-my_graph.add_edge(1, 4)
-my_graph.add_edge(5, 4)
-my_graph.add_edge(4, 2)
-my_graph.add_edge(3, 6)
-my_graph.add_edge(3, 5)
-
+my_graph.add_vertex('banana')
+my_graph.add_vertex('hi')
+my_graph.add_edge('banana', 'hi')
+my_graph.add_vertex('wassup')
+my_graph.add_edge('hi','wassup')
+my_graph.add_vertex('too')
+my_graph.add_edge('banana','too')
+my_graph.add_vertex('lalala')
 
 print(my_graph)
 
-breadth_first_search(my_graph, 3, 2)
+# breadth_first_search(my_graph, 'banana', 'wassup')
+
+depth_first_search(my_graph, 'banana')
+
+print([vertex.finish_time for vertex in my_graph.vertex_object.values()])
 
 HI IM FROM BRANCH
 
