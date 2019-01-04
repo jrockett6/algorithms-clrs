@@ -1,3 +1,5 @@
+import math
+
 from graph import Graph
 from digraph import Digraph
 from digraph_matrix import DigraphMatrix
@@ -5,8 +7,22 @@ from graph_matrix import GraphMatrix
 from queue import Queue 
 from breadth_first_search import breadth_first_search
 from depth_first_search import depth_first_search
+from insertion_sort import insertion_sort
+from merge_sort import merge_sort
 
 
+#------------------------------------------------------------------------------------------------------------------------------------------
+# GETTING STARTED
+#------------------------------------------------------------------------------------------------------------------------------------------
+
+my_list = [12.02, 1.6, 2.3, 3.4]
+my_list = insertion_sort(my_list)
+
+print(my_list)
+
+#------------------------------------------------------------------------------------------------------------------------------------------
+# GRAPH ALGORITHMS
+#------------------------------------------------------------------------------------------------------------------------------------------
 # my_digraphMat = DigraphMatrix(4)
 # my_digraphMat.add_vertex()
 # my_digraphMat.add_edge(2, 3)
@@ -30,26 +46,24 @@ from depth_first_search import depth_first_search
 
 # print(my_queue)
 
-my_graph = Graph()
+# my_graph = Graph()
 
-my_graph.add_vertex('banana')
-my_graph.add_vertex('hi')
-my_graph.add_edge('banana', 'hi')
-my_graph.add_vertex('wassup')
-my_graph.add_edge('hi','wassup')
-my_graph.add_vertex('too')
-my_graph.add_edge('banana','too')
-my_graph.add_vertex('lalala')
+# my_graph.add_vertex('banana')
+# my_graph.add_vertex('hi')
+# my_graph.add_edge('banana', 'hi')
+# my_graph.add_vertex('wassup')
+# my_graph.add_edge('hi','wassup')
+# my_graph.add_vertex('too')
+# my_graph.add_edge('banana','too')
+# my_graph.add_vertex('lalala')
 
-print(my_graph)
+# print(my_graph)
 
 # breadth_first_search(my_graph, 'banana', 'wassup')
 
-depth_first_search(my_graph, 'banana')
+# depth_first_search(my_graph, 'banana')
 
-print([vertex.finish_time for vertex in my_graph.vertex_object.values()])
-
-HI IM FROM BRANCH
+# print([vertex.finish_time for vertex in my_graph.vertex_object.values()])
 
 # my_graph2 = Digraph(4)
 
